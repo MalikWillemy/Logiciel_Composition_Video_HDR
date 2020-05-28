@@ -1,0 +1,5 @@
+# App to load Mitsuba EXR file and to combine layers (Color, AO and Depth)
+
+manageEXR.py file : functions to manage HDR files
+
+exrComposition.py and callback.py files : QT interface to find parameters
