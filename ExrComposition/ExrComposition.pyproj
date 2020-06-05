@@ -26,6 +26,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="exrComposition.py" />
+    <Compile Include="FocusWidget.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="manageEXR.py">
       <SubType>Code</SubType>
     </Compile>
