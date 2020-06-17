@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>608</width>
-    <height>790</height>
+    <width>1280</width>
+    <height>938</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>591</width>
-     <height>321</height>
+     <width>1241</width>
+     <height>431</height>
     </rect>
    </property>
    <property name="cursor">
@@ -28,8 +28,154 @@
    <property name="mouseTracking">
     <bool>true</bool>
    </property>
+   <property name="frameShape">
+    <enum>QFrame::Box</enum>
+   </property>
    <property name="text">
     <string>Image</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_valider">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>850</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Valider</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="button_simulate">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>540</y>
+     <width>211</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>SIMULATE</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>460</y>
+     <width>171</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Rayon/Taille du focus : </string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="sizeDoubleSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>460</y>
+     <width>62</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <double>999.990000000000009</double>
+   </property>
+   <property name="singleStep">
+    <double>10.000000000000000</double>
+   </property>
+   <property name="value">
+    <double>400.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="xDoubleSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>490</y>
+     <width>62</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="maximum">
+    <double>999.990000000000009</double>
+   </property>
+   <property name="singleStep">
+    <double>10.000000000000000</double>
+   </property>
+   <property name="value">
+    <double>0.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>400</x>
+     <y>490</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Position en X : </string>
+   </property>
+  </widget>
+  <widget class="QDoubleSpinBox" name="yDoubleSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>490</y>
+     <width>62</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximum">
+    <double>997.990000000000009</double>
+   </property>
+   <property name="singleStep">
+    <double>10.000000000000000</double>
+   </property>
+   <property name="value">
+    <double>0.000000000000000</double>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>490</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Position en Y : </string>
    </property>
   </widget>
  </widget>
@@ -37,7 +183,7 @@
   <customwidget>
    <class>FocusWidget</class>
    <extends>QLabel</extends>
-   <header location="global">PySide2.QtWidgets</header>
+   <header location="global">FocusWidget.py</header>
   </customwidget>
  </customwidgets>
  <resources/>

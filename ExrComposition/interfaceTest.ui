@@ -16,8 +16,8 @@
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>527</y>
+     <x>90</x>
+     <y>530</y>
      <width>1136</width>
      <height>250</height>
     </rect>
@@ -368,85 +368,91 @@
       </layout>
      </widget>
     </item>
-    <item>
-     <widget class="QGroupBox" name="groupBox_5">
-      <property name="maximumSize">
-       <size>
-        <width>120</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>Parameters</string>
-      </property>
-      <widget class="QPushButton" name="button_loadexr">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>20</y>
-         <width>101</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Load EXR</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="button_loadexr_frame">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>60</y>
-         <width>101</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Load EXR - Frame</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="button_compileexr_dir">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>90</y>
-         <width>101</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Dir EXR to PNG</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="button_save_preset">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>210</y>
-         <width>101</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Save Preset</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="button_load_preset">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>240</y>
-         <width>101</width>
-         <height>23</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Load Preset</string>
-       </property>
-      </widget>
-     </widget>
-    </item>
    </layout>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_5">
+   <property name="geometry">
+    <rect>
+     <x>1140</x>
+     <y>0</y>
+     <width>120</width>
+     <height>514</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>120</width>
+     <height>16777215</height>
+    </size>
+   </property>
+   <property name="title">
+    <string>Parameters</string>
+   </property>
+   <widget class="QPushButton" name="button_loadexr">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Load EXR</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_loadexr_frame">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Load EXR - Frame</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_compileexr_dir">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Dir EXR to PNG</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_save_preset">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>210</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Save Preset</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="button_load_preset">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>101</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Load Preset</string>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

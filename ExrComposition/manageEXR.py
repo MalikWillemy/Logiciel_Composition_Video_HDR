@@ -7,7 +7,6 @@ import math
 
 verbose = False
 
-
 # Load EXR file
 # Return size of the image and [R,G,B], Depth and AO PIL image 
 def loadEXR(filename):
@@ -82,6 +81,24 @@ def getAO8Image(aof, state, scl):
 
 	return aof.point(normalize_ao).convert("L")
 
+
+def getFinalImageWithoutFog(rgbf, stateAO, aof, aoScl):
+	
+	# Get layers
+	np_R = np.array(rgbf[0])
+	np_G = np.array(rgbf[1])
+	np_B = np.array(rgbf[2])
+
+	# Add Ambient Occlusion
+	if stateAO :
+		np_AO = np.array(aof)
+		np_R = np_R - ( 1. - np_AO)*aoScl
+		np_G = np_G - ( 1. - np_AO)*aoScl
+		np_B = np_B - ( 1. - np_AO)*aoScl
+
+	final = [Image.fromarray(np_R),Image.fromarray(np_G),Image.fromarray(np_B)]
+
+	return final
 
 def getFinalImage(rgbf, stateD, df, distMin, distMax, stateAO, aof, aoScl):
 	

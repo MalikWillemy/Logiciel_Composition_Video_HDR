@@ -1,4 +1,3 @@
-
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2.QtCore import Slot, Qt
@@ -6,7 +5,7 @@ from PySide2.QtUiTools import QUiLoader
 from PySide2.QtCore import QFile
 
 from manageEXR import *
-
+import settings
 
 # Set Color Image
 def setColorImage(window):
@@ -40,6 +39,18 @@ def setFinalImage(window):
     
     image_final = getFinalImage(window.rgbf,window.checkBox_Depth.isChecked(),window.df,window.doubleSpinBox_DepthMin.value(),window.doubleSpinBox_DepthMax.value(),window.checkBox_AO.isChecked(),window.aof,window.doubleSpinBox_AOScale.value())#↕,window.checkBox_BlueBG.isChecked())
     image_rgb8 = getRGB8Image(image_final,window.doubleSpinBox_ColorMin.value(),window.doubleSpinBox_ColorMax.value())
-    image = image_rgb8.convert("RGB")
-    data = image.tobytes("raw","RGB")
+    settings.image = image_rgb8.convert("RGB")
+    data = settings.image.tobytes("raw","RGB")
     window.label_imagefinal.setPixmap(QPixmap.fromImage(QImage(data, window.size[0], window.size[1], QImage.Format_RGB888)))
+
+    # Set Final Image Without Fog
+def setFinalImageWithoutFog(window):
+
+    image_final = getFinalImageWithoutFog(window.rgbf, window.checkBox_AO.isChecked(),window.aof,window.doubleSpinBox_AOScale.value())
+    image_rgb8 = getRGB8Image(image_final,window.doubleSpinBox_ColorMin.value(),window.doubleSpinBox_ColorMax.value())
+    settings.imageFogless = image_rgb8.convert("RGB")
+
+def setFinalImageComposed(window, imageComposed):
+    data = imageComposed.tobytes("raw","RGB")
+    window.label_imagefinal.setPixmap(QPixmap.fromImage(QImage(data, window.size[0], window.size[1], QImage.Format_RGB888)))
+    

@@ -1,11 +1,15 @@
 import sys
+import FocusWidget
 import this
 import random
 import subprocess
+import FocusWidget
+import QVideoWidget
+import settings
 
 from os import listdir
 from os.path import isfile, join, splitext
-
+from PIL import Image, ImageQt
 from PySide2.QtWidgets import *
 from PySide2.QtGui import *
 from PySide2.QtCore import Slot, Qt
@@ -14,7 +18,7 @@ from PySide2.QtCore import QFile
 
 from manageEXR import *
 from callback import *
-from FocusWidget import *
+
 
 def returnFinalImage(window):
     window.rgbf = editorWindow.rgbf
@@ -144,6 +148,18 @@ def savePreset():
         presetfile.write(str(editorWindow.checkBox_AO.isChecked())+"\n")
 
 
+def simulate():
+    print("Image Finale ",settings.image)
+
+    print("Image Sans Fog ",settings.imageFogless)
+    crop_rectangle = (focusWindow.xDoubleSpinBox.value(), focusWindow.yDoubleSpinBox.value(), focusWindow.sizeDoubleSpinBox.value(), focusWindow.sizeDoubleSpinBox.value())
+    crop_imageFogless = settings.imageFogless.crop(crop_rectangle)
+    print("Image Sans Fog Rognée ",crop_imageFogless)
+
+    settings.image.paste(crop_imageFogless, (0, 0))
+
+    setFinalImageComposed(focusWindow, settings.image)
+
 def connectFuncEditor(editorWindow):
     # File Dir
     editorWindow.button_loadexr.clicked.connect(loadimages)
@@ -172,28 +188,58 @@ def connectFuncMain(mainWindow):
     mainWindow.button_editorEXR.clicked.connect(loadEditor)
 
 def connectFuncFocus(focusWindow):
-    pass
+    focusWindow.button_simulate.clicked.connect(simulate)
 
 def focusDialog():
     returnFinalImage(focusWindow)
+    setFinalImageWithoutFog(focusWindow)
     setFinalImage(focusWindow)
-    
-    #focusWidget = focusWindow.label_depth
-    #focusWindow.label_depth = focusWidget
-
     focusWindow.exec()
     
 def loadEditor():
     editorWindow.exec()
 
+def setTreeView(maiWindow):
+    mainWindow.imagesTreeView.setContextMenuPolicy(Qt.CustomContextMenu)
+    mainWindow.imagesTreeView.customContextMenuRequested.connect(contextMenu)
+    model = QFileSystemModel();
+    model.setRootPath("../data")
+    mainWindow.imagesTreeView.setModel(model)
+    mainWindow.imagesTreeView.setRootIndex(model.index("../data"))
+
+def contextMenu():
+    menu = QMenu()
+    open = menu.addAction("Open")
+    open.triggered.connect(openFile)
+    cursor = QCursor()
+    menu.exec_(cursor.pos())
+
+def openFile():
+        # OpenFile
+    fileName = mainWindow.imagesTreeView.model().filePath(mainWindow.imagesTreeView.currentIndex())
+    print(fileName)
+    if fileName[0] != '':
+        # Get Images Float and Store in window
+        editorWindow.size, editorWindow.rgbf, editorWindow.df, editorWindow.aof = loadEXR(fileName)
+
+        # Set Images
+        setColorImage(editorWindow)
+        setDepthImage(editorWindow)
+        setAOImage(editorWindow)
+    
+        setFinalImage(editorWindow)
+        loadEditor()
+
 if __name__ == "__main__":
+    settings.init()
+
     app = QApplication(sys.argv)
 
     ui_focusfile = QFile("depth.ui")
     ui_focusfile.open(QFile.ReadOnly)
     loader = QUiLoader()
-    focusWindow = loader.load(ui_focusfile)
     loader.registerCustomWidget(FocusWidget)
+    focusWindow = loader.load(ui_focusfile)
     connectFuncFocus(focusWindow)
 
     ui_editorfile = QFile("interfaceTest.ui")
@@ -205,7 +251,9 @@ if __name__ == "__main__":
     ui_Mainfile = QFile("menu.ui")
     ui_Mainfile.open(QFile.ReadOnly)
     loader = QUiLoader()
+    loader.registerCustomWidget(QVideoWidget)
     mainWindow = loader.load(ui_Mainfile)
+    setTreeView(mainWindow)
     connectFuncMain(mainWindow)
     ui_Mainfile.close()
     mainWindow.show()
